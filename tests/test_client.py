@@ -107,20 +107,19 @@ class TestDRSClient(unittest.TestCase):
             self.assertEqual(
                 m.last_request.url, f"http://fakehost:8080/ga4gh/drs/v1/objects/{mock_id}/access/{mock_access_id}")
 
-
     def test_post_object(self):
         """Test post_object url"""
         with requests_mock.Mocker() as m:
             m.post(
                 f"{self.cli.url}/objects",
                 status_code=200,
-                json = "abc"
+                json="abc"
             )
             json_string = json.dumps(OBJECT_JSON_POST_DATA)
             json_data = json.loads(json_string)
             self.cli.post_object(json_data)
-            self.assertEqual(m.last_request.url, f"http://fakehost:8080/ga4gh/drs/v1/objects")
-
+            self.assertEqual(m.last_request.url,
+                             f"http://fakehost:8080/ga4gh/drs/v1/objects")
 
     def test_delete_object(self):
         """Test delete_object url"""
@@ -129,8 +128,8 @@ class TestDRSClient(unittest.TestCase):
             m.delete(
                 f"{self.cli.url}/objects/{mock_id}",
                 status_code=200,
-                json = "abc"
+                json="abc"
             )
             self.cli.delete_object("abc")
-            self.assertEqual(m.last_request.url, f"http://fakehost:8080/ga4gh/drs/v1/objects/{mock_id}")
-
+            self.assertEqual(
+                m.last_request.url, f"http://fakehost:8080/ga4gh/drs/v1/objects/{mock_id}")
