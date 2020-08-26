@@ -30,7 +30,7 @@ class DRSClient():
         self.url = f"{host}:{port}/{base_path}"
         self.token = token
 
-    def get_object(self, object_id):
+    def get_object(self, object_id: str) -> str:
         """ Gets the DRS object
 
         Args:
@@ -46,7 +46,7 @@ class DRSClient():
         return req.json()
 
 
-    def get_access_url(self, object_id, access_id):
+    def get_access_url(self, object_id: str, access_id: str) -> str:
         """ Get access URL of DRS object.
         
         Args:
@@ -65,7 +65,7 @@ class DRSClient():
         return req.json()
 
 
-    def post_object(self, object_data):
+    def post_object(self, object_data: dict) -> str:
         """ Register new DRS object.
 
         Args:
@@ -77,11 +77,11 @@ class DRSClient():
         request_url = f"{self.url}/objects"
         PostDrsObject(**object_data)  # validate outgoing payload
         req = requests.post(url=request_url, json = object_data)
-        # print(req)
+        print(req.json())
         return req.json()
 
 
-    def delete_object(self, object_id):
+    def delete_object(self, object_id: str) -> str:
         """ Delete DRS object.
         
         Args:
