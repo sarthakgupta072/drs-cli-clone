@@ -57,7 +57,7 @@ class DRSClient():
 
         req = requests.get(url=request_url, headers = headers)
         if req.status_code == 200:
-            logger.info(f"Retrieved DRSObject with id: {object_id}")
+            logger.info(f"Retrieved DRSObject with object_id: {object_id}")
             return DrsObject(**req.json())  # validate incoming payload
         else:
             return Error(**req.json())
@@ -87,7 +87,7 @@ class DRSClient():
             headers = {'Content-type': 'application/json'}
         req = requests.get(url=request_url, headers = headers)
         if req.status_code == 200: 
-            logger.info(f"Retrieved AccessURL with id: {object_id} and access_id: {access_id}")
+            logger.info(f"Retrieved AccessURL with object_id: {object_id} and access_id: {access_id}")
             return AccessURL(**req.json())  # validate incoming payload
         else:
             return Error(**req.json())
@@ -116,7 +116,7 @@ class DRSClient():
         PostDrsObject(**object_data)  # validate outgoing payload
         req = requests.post(url=request_url, json = object_data, headers = headers)
         if req.status_code == 200:
-            logger.info(f"DRSObject with id: {req.json()} registered.")
+            logger.info(f"DRSObject with object_id: {req.json()} registered.")
             return req.json()
         else:
             return Error(**req.json())
@@ -144,7 +144,7 @@ class DRSClient():
             headers = {'Content-type': 'application/json'}
         req = requests.delete(url=request_url, headers = headers)
         if req.status_code == 200:
-            logger.info(f"DRSObject with id: {object_id} deleted.")
+            logger.info(f"DRSObject with object_id: {object_id} deleted.")
             return req.json()
         else:
             return Error(**req.json())
